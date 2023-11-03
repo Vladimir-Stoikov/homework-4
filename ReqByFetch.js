@@ -10,6 +10,10 @@ export default class ReqByFetch {
       };
 
       const response = await fetch(`${this._url}/${id}`, props);
+      if (!response.ok) {
+        console.log('Ошибка получения данных');
+        return null;
+      }
       return await response.json();
     } catch (error) {
       throw new Error(error);
@@ -27,6 +31,10 @@ export default class ReqByFetch {
       };
 
       const response = await fetch(`${this._url}/${id}`, props);
+      if (!response.ok) {
+        console.log('Ошибка получения данных');
+        return null;
+      }
       return await response.json();
     } catch (error) {
       throw new Error(error);
@@ -40,6 +48,10 @@ export default class ReqByFetch {
       };
 
       const response = await fetch(`${this._url}/${id}`, props);
+      if (!response.ok) {
+        console.log('Ошибка получения данных');
+        return null;
+      }
       return await response.json();
     } catch (error) {
       throw new Error(error);
@@ -53,6 +65,10 @@ export default class ReqByFetch {
       };
 
       const response = await fetch(`${this._url}`, props);
+      if (!response.ok) {
+        console.log('Ошибка получения данных');
+        return null;
+      }
       return await response.json();
     } catch (error) {
       throw new Error(error);
@@ -70,6 +86,10 @@ export default class ReqByFetch {
       };
 
       const response = await fetch(`${this._url}`, props);
+      if (!response.ok) {
+        console.log('Ошибка получения данных');
+        return null;
+      }
       return await response.json();
     } catch (error) {
       throw new Error(error);

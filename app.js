@@ -13,14 +13,12 @@ const completeTask = {
   isCompleted: true,
 };
 
-// controller.getTaskByIdXML(id);
-// controller.patchTaskXML(id, completeTask);
-// controller.deleteTaskByIdXML(id);
-// controller.getTasksXML();
-// controller.postNewTaskXML(newTask);
-
-// controller.getTaskByIdFetch(id);
-// controller.patchTaskFetch(id, completeTask);
-// controller.deleteTaskByIdFetch(id);
-// controller.getTasksFetch();
-// controller.postNewTaskFetch(newTask);
+// controller.delete(id);
+// controller.post(newTask);
+// controller.get(id);
+// controller.switchReqMethod();
+// controller.get(id);
+// controller.patch(id, completeTask);
+// controller.get(id);
+// controller.switchReqMethod();
+// controller.getAll();

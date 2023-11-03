@@ -5,79 +5,76 @@ export default class RequestsControl {
   constructor() {
     this._xmlReq = new ReqByXML();
     this._fetchReq = new ReqByFetch();
+    this.isReqByFetch = true;
   }
 
-  // XML part ------------
-
-  getTaskByIdXML(id) {
-    this._xmlReq
-      .getTaskById(id)
-      .then(data => console.log(JSON.parse(data)))
-      .catch(error => console.warm(error));
+  get(id) {
+    if (this.isReqByFetch) {
+      this._fetchReq
+        .getTaskById(id)
+        .then(data => console.log(`GET/Fetch Задание получено `, data))
+        .catch(error => console.log(error));
+    } else {
+      this._xmlReq
+        .getTaskById(id)
+        .then(data => console.log(`GET/XMLHttp Задание получено `, JSON.parse(data)))
+        .catch(error => console.log(error));
+    }
   }
-
-  patchTaskXML(id, task) {
-    this._xmlReq
-      .patchTask(id, task)
-      .then(data => console.log(JSON.parse(data)))
-      .catch(error => console.warm(error));
+  patch(id, task) {
+    if (this.isReqByFetch) {
+      this._fetchReq
+        .patchTask(id, task)
+        .then(data => console.log(`PATCH/Fetch Задание №${id} изменено `, data))
+        .catch(error => console.log(error));
+    } else {
+      this._xmlReq
+        .patchTask(id, task)
+        .then(data => console.log(`PATCH/XMLHttp Задание №${id} изменено `, JSON.parse(data)))
+        .catch(error => console.log(error));
+    }
   }
-
-  deleteTaskByIdXML(id) {
-    this._xmlReq
-      .deleteTaskById(id)
-      .then(data => console.log(JSON.parse(data)))
-      .catch(error => console.warm(error));
+  delete(id) {
+    if (this.isReqByFetch) {
+      this._fetchReq
+        .deleteTaskById(id)
+        .then(data => console.log(`PATCH/Fetch Задание №${id} удалено `, data))
+        .catch(error => console.log(error));
+    } else {
+      this._xmlReq
+        .deleteTaskById(id)
+        .then(data => console.log(`PATCH/XMLHttp Задание №${id} удалено `, JSON.parse(data)))
+        .catch(error => console.log(error));
+    }
   }
-
-  getTasksXML() {
-    this._xmlReq
-      .getTasks()
-      .then(data => console.log(JSON.parse(data)))
-      .catch(error => console.warm(error));
+  getAll() {
+    if (this.isReqByFetch) {
+      this._fetchReq
+        .getTasks()
+        .then(data => console.log(`GET/Fetch Получены все задания `, data))
+        .catch(error => console.log(error));
+    } else {
+      this._xmlReq
+        .getTasks()
+        .then(data => console.log(`GET/XMLHttp Получены все задания `, JSON.parse(data)))
+        .catch(error => console.log(error));
+    }
   }
-
-  postNewTaskXML(task) {
-    this._xmlReq
-      .postNewTask(task)
-      .then(data => console.log(JSON.parse(data)))
-      .catch(error => console.warm(error));
+  post(task) {
+    if (this.isReqByFetch) {
+      this._fetchReq
+        .postNewTask(task)
+        .then(data => console.log(`POST/Fetch Добавлено новое задание `, data))
+        .catch(error => console.log(error));
+    } else {
+      this._xmlReq
+        .postNewTask(task)
+        .then(data => console.log(`POST/XMLHttp Добавлено новое задание `, JSON.parse(data)))
+        .catch(error => console.log(error));
+    }
   }
-
-  // Fetch Part ---------------------
-
-  getTaskByIdFetch(id) {
-    this._fetchReq
-      .getTaskById(id)
-      .then(data => console.log(data))
-      .catch(error => console.warm(error));
-  }
-
-  patchTaskFetch(id, task) {
-    this._fetchReq
-      .patchTask(id, task)
-      .then(data => console.log(data))
-      .catch(error => console.warm(error));
-  }
-
-  deleteTaskByIdFetch(id) {
-    this._fetchReq
-      .deleteTaskById(id)
-      .then(data => console.log(data))
-      .catch(error => console.warm(error));
-  }
-
-  getTasksFetch() {
-    this._fetchReq
-      .getTasks()
-      .then(data => console.log(data))
-      .catch(error => console.warm(error));
-  }
-
-  postNewTaskFetch(task) {
-    this._fetchReq
-      .postNewTask(task)
-      .then(data => console.log(data))
-      .catch(error => console.warm(error));
+  switchReqMethod() {
+    this.isReqByFetch = !this.isReqByFetch;
+    console.log(`Метод запроса изменен на ${this.isReqByFetch ? 'FETCH' : 'XMLHttp'}`);
   }
 }
